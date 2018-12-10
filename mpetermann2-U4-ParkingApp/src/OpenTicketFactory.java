@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 import java.util.Date;
 
-public class DataGrabber {
+public class OpenTicketFactory {
+    static ArrayList<OpenTicket> ticketList = null;
+
     /**
      * Gets Ticket ArrayList from file
-     * @return ArrayList of Ticket
      */
-    public static final ArrayList<OpenTicket> getTickets() {
+    private static void loadFromFile() {
         //Declare variables
         ArrayList<OpenTicket> tickets = new ArrayList<>();
         FileInput in = new FileInput(Garage.FILEPATH);
@@ -22,6 +23,17 @@ public class DataGrabber {
         in.fileClose();
 
         //Return the list of tickets
-        return tickets;
+        ticketList = tickets;
+    }
+
+    /**
+     * If array list has not yet been loaded, load it
+     * @return ArrayList of OpenTicket
+     */
+    public static final ArrayList<OpenTicket> getTickets() {
+        if(ticketList == null)
+            loadFromFile();
+
+        return ticketList;
     }
 }

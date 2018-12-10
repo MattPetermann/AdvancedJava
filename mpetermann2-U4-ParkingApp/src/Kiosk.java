@@ -12,7 +12,7 @@ public class Kiosk {
      */
     public static final void checkIn() {
         //Get the tickets and add a new ticket
-        ArrayList<OpenTicket> tickets = DataGrabber.getTickets();
+        ArrayList<OpenTicket> tickets = OpenTicketFactory.getTickets();
         OpenTicket newTicket = new OpenTicket(tickets.size() > 0 ? tickets.get(tickets.size() - 1).getID() + 1 : 0, new Date());
         tickets.add(newTicket);
 
@@ -64,7 +64,7 @@ public class Kiosk {
                     id = in.nextInt();
 
                     //Get list of tickets
-                    ArrayList<OpenTicket> tickets = DataGrabber.getTickets();
+                    ArrayList<OpenTicket> tickets = OpenTicketFactory.getTickets();
 
                     //Find the ticket specified
                     for(OpenTicket t : tickets) {
